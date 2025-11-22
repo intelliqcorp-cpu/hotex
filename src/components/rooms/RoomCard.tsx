@@ -65,14 +65,22 @@ export function RoomCard({ room, hotelId, onBook }: RoomCardProps) {
         </p>
 
         <div className="flex gap-3">
-          <a href={roomUrl} className="flex-1">
-            <Button variant="outline" size="md" className="w-full">
-              View Details
-            </Button>
-          </a>
-          {onBook && room.is_available && (
-            <Button variant="primary" size="md" onClick={onBook} className="flex-1">
-              Book Now
+          {room.is_available ? (
+            <>
+              <a href={roomUrl} className="flex-1">
+                <Button variant="outline" size="md" className="w-full">
+                  View Details
+                </Button>
+              </a>
+              <a href={`/book/${room.id}`} className="flex-1">
+                <Button variant="primary" size="md" className="w-full">
+                  Book Now
+                </Button>
+              </a>
+            </>
+          ) : (
+            <Button variant="outline" size="md" className="w-full" disabled>
+              Not Available
             </Button>
           )}
         </div>
